@@ -1,4 +1,6 @@
 require 'colorize'
+
+# a module that keeps every line of text present in the game
 module GameText
   def say_greeting
     puts "#{'Hello!'.yellow} You're about to play a Hangman game implementation by #{'Valdemar_check'.yellow}"

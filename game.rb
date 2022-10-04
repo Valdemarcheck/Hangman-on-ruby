@@ -3,8 +3,6 @@ require_relative 'modules/get_input'
 require_relative 'modules/hangman_drawer'
 require_relative 'secret_word'
 
-# !!!!!!!!!!!!don't greet player if he plays one more time
-
 # the main class where the whole game is established and played
 class Game
   include GameText

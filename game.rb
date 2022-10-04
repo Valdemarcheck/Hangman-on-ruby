@@ -12,11 +12,14 @@ class Game
   include HangmanDrawer
   attr_reader :secret_word, :secret_word_array, :attempts
 
+  @@restart_happened = false
+
   def initialize
     @secret_word = SecretWord.new
     @attempts = 8
     make_hangman_array
-    start_game
+    greet_player unless @@restart_happened
+    game_loop
   end
 
   # main game loop
@@ -35,12 +38,11 @@ class Game
   private
 
   # output startup text and begin start the main game
-  def start_game
+  def greet_player
     say_greeting
     say_ask_for_rules
     say_rules if input_yes_or_no == 'y'
     say_announce_beginning
-    game_loop
   end
 
   # ask player to input any letter, and tell him what is the result of his prompt
@@ -104,7 +106,8 @@ class Game
       exit(1)
     # if he wants to restart
     else
-      Game.new
+      @@restart_happened = true
+      initialize
     end
   end
 end

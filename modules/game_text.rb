@@ -79,9 +79,9 @@ module GameText
 
   def say_lost
     sleep(0.2)
-    puts 'It seems like you could\'t guess the word in 10 attempts...'.red
+    puts "It seems like #{'you could\'t'.red} guess the word in 10 attempts..."
     sleep(0.5)
-    puts 'Maybe next time ¯\_(ツ)_/¯'.red
+    puts 'Maybe next time ¯\_(ツ)_/¯'.green
   end
 
   def say_ask_for_restart

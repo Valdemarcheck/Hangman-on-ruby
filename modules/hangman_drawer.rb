@@ -1,12 +1,14 @@
 module HangmanDrawer
   # a fully drawn picture of a hangman
   HANGMAN_PICTURE = [
-    '=============  ',
-    '||          |  ',
-    '||          o  ',
-    "||         /0\ ",
-    "||         / \ ",
-    '/\             ']
+    '============= ',
+    '||          | ',
+    '||          | ',
+    '||          | ',
+    '||          o ',
+    '||         /0|',
+    '||         / |',
+    '/\            ']
 
   # make an empty array where the hangman will be drawn
   # layer by layer

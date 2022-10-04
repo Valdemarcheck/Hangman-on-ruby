@@ -5,23 +5,29 @@ require_relative 'modules/game_text'
 class SecretWord
   include GameText
   attr_reader :word
-  attr_accessor :hidden_word_array
+  attr_accessor :hidden_word_array, :used_letters
 
   def initialize
     select_random_word
-     # split the word and replace each character with '_' sign
+    # split the word and replace each character with _ sign
     @hidden_word_array = @word.split('').map { '_' }
+    @used_letters = []
   end
 
+  # prints a partly hidden version of the word
   def print_word
     sleep(0.2)
     puts '' # extra empty line for better spacing
     puts @hidden_word_array.join(' ')
   end
 
+  # adds a letter to the list of already used ones
+  def add_letter_to_used(letter)
+    @used_letters.push(letter).sort
+  end
+
   # replace '_' signs of the splitted word with a guessed letter
   def reveal_letters(letter)
-
     # go through each non-splitted word's character
     @word.split('').each_with_index do |char, index|
       # replace '_' with #{letter} if current character of not splitted word is this letter

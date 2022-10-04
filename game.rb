@@ -22,9 +22,11 @@ class Game
   # main game loop
   def game_loop
     loop do
+      print_separator
       print_hangman
-      say_tell_attempts(@attempts)
       @secret_word.print_word
+      say_tell_attempts(@attempts)
+      print_used_letters(@secret_word.used_letters)
       input_letter_and_show_outcome
       win_or_lose
     end
@@ -43,21 +45,30 @@ class Game
 
   # ask player to input any letter, and tell him what is the result of his prompt
   def input_letter_and_show_outcome
-    letter = input_char # letter input
-
+    letter = input_char
     # if the letter is in the word player is guessing and also it wasn't guessed earlier
-    if @secret_word.word.include?(letter) && !@secret_word.hidden_word_array.include?(letter)
-      say_letter_in_word(letter)
-      @secret_word.reveal_letters(letter)
-    # if the letter was already guessed earlier
-    elsif @secret_word.hidden_word_array.include?(letter)
+    if @secret_word.word.include?(letter) && !@secret_word.used_letters.include?(letter)
+      if_player_guessed_right(letter)
+    elsif @secret_word.used_letters.include?(letter) # if the letter was already guessed earlier
       say_already_guessed(letter)
-    # if player didn't guess any letter
-    else
-      @attempts -= 1
-      add_layer
-      say_letter_not_in_word
+    else # if player didn't guess any letter
+      if_player_guessed_wrong(letter)
     end
+  end
+
+  # tells player that he guessed a letter and reveal this letter
+  def if_player_guessed_right(letter)
+    @secret_word.add_letter_to_used(letter)
+    say_letter_in_word(letter)
+    @secret_word.reveal_letters(letter)
+  end
+
+  # tells player that he didn't guess a letter and remove one attempt from him
+  def if_player_guessed_wrong(letter)
+    @secret_word.add_letter_to_used(letter)
+    @attempts -= 1
+    add_layer
+    say_letter_not_in_word
   end
 
   # announce win or lose of player

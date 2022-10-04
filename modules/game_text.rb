@@ -2,6 +2,11 @@ require 'colorize'
 
 # a module that keeps every line of text present in the game
 module GameText
+  # a separator for easier to look at UI
+  def print_separator
+    puts '==============================='
+  end
+
   def say_greeting
     puts "#{'Hello!'.yellow} You're about to play a Hangman game implementation by #{'Valdemar_check'.yellow}"
     sleep(2)
@@ -62,21 +67,26 @@ module GameText
     puts "You've guessed the #{letter} Letter!".green
   end
 
+  # prints letters which were used for guessing
+  def print_used_letters(used_letters_array)
+    puts "You've used those letters: #{used_letters_array}"
+  end
+
   def say_win
     sleep(0.2)
-    puts 'Great! You\'ve won against your PC!'
+    puts 'Great! You\'ve won against your PC!'.green
   end
 
   def say_lost
     sleep(0.2)
-    puts 'It seems like you could\'t guess the word in 10 attempts...'
+    puts 'It seems like you could\'t guess the word in 10 attempts...'.red
     sleep(0.5)
-    puts 'Maybe next time ¯\_(ツ)_/¯'.green
+    puts 'Maybe next time ¯\_(ツ)_/¯'.red
   end
 
   def say_ask_for_restart
     sleep(0.2)
-    puts 'Would you like to play once more?'.blue
+    puts "Would you like to play #{'once more?'.yellow}"
   end
 
   def say_goodbye

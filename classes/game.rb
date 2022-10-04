@@ -1,6 +1,6 @@
-require_relative 'modules/game_text'
-require_relative 'modules/get_input'
-require_relative 'modules/hangman_drawer'
+require_relative '../modules/game_text'
+require_relative '../modules/get_input'
+require_relative '../modules/hangman_drawer'
 require_relative 'secret_word'
 
 # the main class where the whole game is established and played

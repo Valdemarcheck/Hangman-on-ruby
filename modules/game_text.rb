@@ -64,7 +64,7 @@ module GameText
 
   def say_letter_in_word(letter)
     sleep(0.1)
-    puts "You've guessed the #{letter} Letter!".green
+    puts "You've guessed the '#{letter.upcase}' Letter!".green
   end
 
   # prints letters which were used for guessing
@@ -79,9 +79,11 @@ module GameText
 
   def say_lost
     sleep(0.2)
+    puts ''
     puts "It seems like #{'you could\'t'.red} guess the word in 10 attempts..."
     sleep(0.5)
     puts 'Maybe next time ¯\_(ツ)_/¯'.green
+    puts ''
   end
 
   def say_ask_for_restart

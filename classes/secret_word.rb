@@ -1,4 +1,4 @@
-require_relative 'modules/game_text'
+require_relative '../modules/game_text'
 
 # this class keeps the secret word inside, and also the splitted version of it
 # to make the main guessing mechanic possible

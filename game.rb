@@ -1,23 +1,29 @@
 require_relative 'modules/game_text'
 require_relative 'modules/get_input'
+require_relative 'modules/hangman_drawer'
 require_relative 'secret_word'
+
+# !!!!!!!!!!!!don't greet player if he plays one more time
 
 # the main class where the whole game is established and played
 class Game
   include GameText
   include GetInput
+  include HangmanDrawer
   attr_reader :secret_word, :secret_word_array, :attempts
 
   def initialize
     @secret_word = SecretWord.new
     @attempts = 8
+    make_hangman_array
     start_game
   end
 
   # main game loop
   def game_loop
-    say_tell_attempts
     loop do
+      print_hangman
+      say_tell_attempts(@attempts)
       @secret_word.print_word
       input_letter_and_show_outcome
       win_or_lose
@@ -49,8 +55,8 @@ class Game
     # if player didn't guess any letter
     else
       @attempts -= 1
+      add_layer
       say_letter_not_in_word
-      say_tell_attempts(@attempts)
     end
   end
 

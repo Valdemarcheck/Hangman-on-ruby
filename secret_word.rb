@@ -9,7 +9,8 @@ class SecretWord
 
   def initialize
     select_random_word
-    @hidden_word_array = @word.split('').map { '_' } # split the word
+     # split the word and replace each character with '_' sign
+    @hidden_word_array = @word.split('').map { '_' }
   end
 
   def print_word

@@ -14,6 +14,7 @@ class Game
   end
 
   def game_loop
+    say_tell_attempts
     loop do
       @secret_word.print_word
       input_letter_and_show_outcome
@@ -23,11 +24,22 @@ class Game
 
   private
 
+  def start_game
+    say_greeting
+    say_ask_for_rules
+    say_rules if input_yes_or_no == 'y'
+    say_announce_beginning
+    game_loop
+  end
+
   def input_letter_and_show_outcome
     letter = input_char
-    if @secret_word.word.include?(letter)
+    if @secret_word.word.include?(letter) && !@secret_word.hidden_word_array.include?(letter)
+      say_letter_in_word(letter)
       @secret_word.reveal_letters(letter)
-    elsif !@secret_word.hidden_word_array.include?(letter)
+    elsif @secret_word.hidden_word_array.include?(letter)
+      say_already_guessed(letter)
+    else
       @attempts -= 1
       say_letter_not_in_word
       say_tell_attempts(@attempts)
@@ -40,14 +52,6 @@ class Game
     elsif !@secret_word.hidden_word_array.include?('_')
       win_game
     end
-  end
-
-  def start_game
-    say_greeting
-    say_ask_for_rules
-    say_rules if input_yes_or_no == 'y'
-    say_announce_beginning
-    game_loop
   end
 
   def win_game

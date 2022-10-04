@@ -10,6 +10,8 @@ class SecretWord
   end
 
   def print_word
+    sleep(0.2)
+    puts ''
     puts @hidden_word_array.join(' ')
   end
 

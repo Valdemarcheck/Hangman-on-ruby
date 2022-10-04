@@ -21,16 +21,12 @@ module GameText
     puts 'Input any (just one!) character from latin alphabet'.blue
   end
 
-  def say_invalid_input
-    puts 'Invalid input'.red
-  end
-
   def say_tell_attempts(attempts)
     puts "You've got #{attempts.to_s.yellow} attempts left"
   end
 
-  def say_failure
-    puts 'Oh.. it seems like the chosen letter isn\'t in the given word'
+  def say_letter_not_in_word
+    puts "Oh.. it seems like the chosen letter #{'isn\'t in the given word'.red}"
   end
 
   def say_win
@@ -48,5 +44,15 @@ module GameText
 
   def say_goodbye
     puts 'See you next time!'.green
+  end
+
+  # invalid input messages
+
+  def tell_invalid_letter
+    puts 'Invalid input, you should input just one letter from a to z'.red
+  end
+
+  def tell_invalid_yes_or_not
+    puts 'Invalid input, you should input "y" to agree or "n" to disagree'.red
   end
 end

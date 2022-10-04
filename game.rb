@@ -28,8 +28,8 @@ class Game
     if @secret_word.word.include?(letter)
       @secret_word.reveal_letters(letter)
     elsif !@secret_word.hidden_word_array.include?(letter)
-      say_failure
       @attempts -= 1
+      say_letter_not_in_word
       say_tell_attempts(@attempts)
     end
   end

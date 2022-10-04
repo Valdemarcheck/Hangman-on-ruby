@@ -80,7 +80,7 @@ module GameText
   def say_lost
     sleep(0.2)
     puts ''
-    puts "It seems like #{'you could\'t'.red} guess the word in 10 attempts..."
+    puts "It seems like #{'you could\'t'.red} guess the word in 8 attempts..."
     sleep(0.5)
     puts 'Maybe next time ¯\_(ツ)_/¯'.green
     puts ''

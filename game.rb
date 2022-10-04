@@ -27,7 +27,7 @@ class Game
     letter = input_char
     if @secret_word.word.include?(letter)
       @secret_word.reveal_letters(letter)
-    else
+    elsif !@secret_word.hidden_word_array.include?(letter)
       say_failure
       @attempts -= 1
       say_tell_attempts(@attempts)
